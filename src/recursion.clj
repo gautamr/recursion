@@ -126,13 +126,18 @@
   (un-frequencies-helper '() a-map))
 
 (defn my-take [n coll]
-  (if (< n 1)))
+  (if (< n 1)
+    '()
+    (cons (first coll) (my-take (dec n) (rest coll)))))
 
 (defn my-drop [n coll]
-  conj)
+  (if (< n 1)
+    coll
+    (my-drop (dec n) (rest coll))))
 
 (defn halve [a-seq]
-  [:-])
+  (let [c (count a-seq) pivot (int (/ c 2))]
+    [(my-take pivot a-seq) (my-drop (- c pivot) a-seq)]))
 
 (defn seq-merge [a-seq b-seq]
   [:-])
